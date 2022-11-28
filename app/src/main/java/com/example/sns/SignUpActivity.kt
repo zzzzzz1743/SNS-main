@@ -125,7 +125,7 @@ class SignUpActivity :AppCompatActivity(){
     private fun addUser(uid:String,Id:String,Email:String){
         val ref=db.collection("User").document(uid)
         db.runTransaction{
-            var user=User(Email,Id,0,uid,0,0)
+            var user=User(Email,Id,0,uid)
             it.set(ref,user)
         }.addOnCompleteListener {
         }

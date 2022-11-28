@@ -69,4 +69,7 @@ dependencies {
     implementation 'androidx.fragment:fragment-ktx:1.5.4'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
 
+    implementation"androidx.recyclerview:recyclerview-selection:1.1.0"
+    implementation"androidx.recyclerview:recyclerview:1.2.1"
+
 }

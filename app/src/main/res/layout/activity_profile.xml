@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
     <TextView
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/profile_mainButton"
+        android:id="@+id/follow_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="318dp"
@@ -28,89 +28,90 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/intro_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="246dp"
-        android:text="자기소개가 여기에 표시됩니다"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <TextView-->
+<!--        android:id="@+id/intro"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="272dp"-->
+<!--        android:text="자기소개가 여기에 표시됩니다"-->
+<!--        android:textColor="#000000"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <TextView
-        android:id="@+id/follower_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/from"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
         android:layout_marginTop="15dp"
         android:gravity="center"
-        android:textColor="#000000"
         android:text="팔로워"
         android:textAlignment="center"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
     <TextView
-        android:id="@+id/following_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/to"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
         android:gravity="center"
-        android:textColor="#000000"
         android:text="팔로잉"
         android:textAlignment="center"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toEndOf="@+id/follower"
-        app:layout_constraintTop_toTopOf="@+id/follower_count" />
+        app:layout_constraintTop_toTopOf="@+id/from" />
 
     <TextView
         android:id="@+id/post_count"
-        android:layout_width="57dp"
-        android:layout_height="16dp"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
         android:gravity="center"
-        android:textColor="#000000"
         android:text="게시물"
         android:textAlignment="center"
+        android:textColor="#000000"
         app:layout_constraintEnd_toStartOf="@+id/follower"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/follower_count" />
+        app:layout_constraintTop_toTopOf="@+id/from" />
 
     <TextView
         android:id="@+id/following"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
         android:gravity="center"
-        android:textColor="#000000"
         android:text="팔로잉"
         android:textAlignment="center"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/follower"
         app:layout_constraintTop_toTopOf="@+id/follower" />
 
     <TextView
         android:id="@+id/post"
-        android:layout_width="57dp"
-        android:layout_height="16dp"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
         android:gravity="center"
-        android:textColor="#000000"
         android:text="게시물"
         android:textAlignment="center"
+        android:textColor="#000000"
         app:layout_constraintEnd_toStartOf="@+id/follower"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/follower" />
 
     <TextView
         android:id="@+id/follower"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
         android:layout_marginTop="41dp"
         android:gravity="center"
-        android:textColor="#000000"
         android:text="팔로워"
         android:textAlignment="center"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_image" />
@@ -152,29 +153,15 @@
         app:layout_constraintTop_toBottomOf="@+id/rectangle_1"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="247dp"
-        android:layout_marginTop="20dp"
-        android:contentDescription="@string/app_name"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/profile_recyclerview"
+        android:layout_width="409dp"
+        android:layout_height="311dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myPost_text">
-
-        <LinearLayout
-            android:id="@+id/posts_inprofile"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/firstLinearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"></LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/profile_item"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,8 +23,6 @@
             android:label="PostingActivity"/>
         <activity android:name=".ProfileActivity"
             android:label="ProfileActivity"/>
-        <activity android:name=".UpdateProfileActivity"
-            android:label="UpdateProfileActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

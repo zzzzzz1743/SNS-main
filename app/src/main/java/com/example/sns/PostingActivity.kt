@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.sns.databinding.AcivityPostingBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.util.Date
@@ -70,7 +71,11 @@ class PostingActivity: AppCompatActivity() {
         var post=Post(Date(),uid,username,binding.description.text.toString(),0, imageUri.toString(), Firebase.auth.uid.toString())
         val imgref=storage.reference.child("Post/${Date()}")
         db.runTransaction {
-            post.userID=it.get(db.collection("User").document(uid))["id"] as String
+            val userref=db.collection("User").document(uid)
+            var user=it.get(userref).toObject<User>()
+            post.userID=user!!.id
+            user.numOfPost+=1
+            it.update(userref, "numOfPost",user.numOfPost)
         }.addOnSuccessListener {
             if (imageUri != null) {
                 imgref.putFile(imageUri!!).addOnSuccessListener {

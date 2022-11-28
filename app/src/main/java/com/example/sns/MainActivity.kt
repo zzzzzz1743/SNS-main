@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             }
             R.id.action_profile ->{
                 logincheck()
-                startActivity(Intent(this,ProfileActivity::class.java))
+                startActivity(Intent(this,ProfileActivity::class.java).putExtra("uid",Firebase.auth.uid))
             }
         }
         return false

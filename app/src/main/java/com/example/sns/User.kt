@@ -5,6 +5,6 @@ data class User(
     var id:String="",
     var numOfPost:Int=0,
     var uid:String="",
-    var follower_count:Int=0,
-    var following_count:Int=0
+    var from: ArrayList<String> =ArrayList(),
+    var to: ArrayList<String> =ArrayList()
 )
