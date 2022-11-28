@@ -18,13 +18,14 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when(p0.itemId){
             R.id.action_home ->{
-                var homeFragment = HomeFragment()
-                supportFragmentManager.beginTransaction().replace(R.id.main_content,homeFragment).commit()
-                return true
-            }
-            R.id.action_search ->{
                 var friendFragment = FriendFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.main_content,friendFragment).commit()
+                return true
+
+            }
+            R.id.action_search ->{
+                var homeFragment = HomeFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.main_content,homeFragment).commit()
                 return true
             }
             R.id.action_newpost ->{
