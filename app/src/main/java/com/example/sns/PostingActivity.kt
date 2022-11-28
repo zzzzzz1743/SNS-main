@@ -57,6 +57,7 @@ class PostingActivity: AppCompatActivity() {
         }
 
         binding.upload.setOnClickListener{
+            binding.upload.isEnabled=false
             logincheck()
             uploadpost()
 

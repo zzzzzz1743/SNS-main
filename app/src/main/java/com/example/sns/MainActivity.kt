@@ -35,7 +35,8 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
             }
             R.id.action_profile ->{
-
+                logincheck()
+                startActivity(Intent(this,ProfileActivity::class.java))
             }
         }
         return false
