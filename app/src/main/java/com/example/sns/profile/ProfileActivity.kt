@@ -1,10 +1,12 @@
-package com.example.sns
+package com.example.sns.profile
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.sns.databinding.ActivityProfileBinding
+import com.example.sns.login.User
+import com.example.sns.posting.Post
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
@@ -45,7 +47,7 @@ class ProfileActivity : AppCompatActivity() {
                     posts.add(post)
                 println("@@@@@@@qq" + posts)
             }
-            val adapter=ProfileAdapter(posts)
+            val adapter= ProfileAdapter(posts)
             binding.profileRecyclerview.adapter=adapter
             println("success")
         }.addOnFailureListener {
@@ -55,7 +57,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun follow(from:String,to:String){
         //정보 가져오고 수정하고 보내기
-         var touser=User()
+         var touser= User()
         db.runTransaction {
             //상대의 팔로워 목록에 나를 추가
             val ref = db.collection("User").document(to)
@@ -82,7 +84,7 @@ class ProfileActivity : AppCompatActivity() {
             var fromuser = it.get(ref1).toObject<User>()
 
             if(fromuser==null){
-                fromuser=User()
+                fromuser= User()
             }
 
             if(!(fromuser!!.to.contains(to)))
@@ -98,7 +100,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun unfollow(from: String, to: String){
         //정보 가져오고 수정하고 보내기
-         var touser:User=User()
+         var touser: User = User()
         db.runTransaction {
             //상대의 팔로워 목록에서 나를 제거
             val ref = db.collection("User").document(to)
@@ -119,7 +121,7 @@ class ProfileActivity : AppCompatActivity() {
             binding.to.text=touser.to.size.toString()
         }
 
-        var fromuser:User?=User()
+        var fromuser: User?= User()
         db.runTransaction{
             //내가 팔로우 하는 사람을 추가
             val ref1=db.collection("User").document(from)
@@ -127,7 +129,7 @@ class ProfileActivity : AppCompatActivity() {
              fromuser= it.get(ref1).toObject<User>()
 
             if(fromuser==null){
-                fromuser=User()
+                fromuser= User()
             }
 
             for(i in 0 until fromuser!!.to.size){

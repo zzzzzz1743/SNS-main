@@ -1,10 +1,10 @@
-package com.example.sns
+package com.example.sns.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.sns.MainActivity
 import com.example.sns.databinding.ActivitySigninBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore

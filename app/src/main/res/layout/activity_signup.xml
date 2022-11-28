@@ -81,4 +81,15 @@
         app:layout_constraintTop_toBottomOf="@+id/pwcheck"
         android:background="@drawable/signup_btn" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="프로필 사진을 선택하세요"
+        android:textColor="@color/main_theme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_picture" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

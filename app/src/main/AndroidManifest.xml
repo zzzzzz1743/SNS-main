@@ -13,15 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sns"
         tools:targetApi="31">
-        <activity android:name=".SignUpActivity"
+        <activity android:name=".login.SignUpActivity"
             android:label="SignUpActivity"
             />
-        <activity android:name=".SignInActivity"
+        <activity android:name=".login.SignInActivity"
             android:label="SignInActivity"
             />
-        <activity android:name=".PostingActivity"
+        <activity android:name=".posting.PostingActivity"
             android:label="PostingActivity"/>
-        <activity android:name=".ProfileActivity"
+        <activity android:name=".profile.ProfileActivity"
             android:label="ProfileActivity"/>
         <activity
             android:name=".MainActivity"

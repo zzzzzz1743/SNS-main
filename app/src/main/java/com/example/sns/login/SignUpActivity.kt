@@ -1,4 +1,4 @@
-package com.example.sns
+package com.example.sns.login
 
 import android.app.Activity
 import android.content.ContentResolver
@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.example.sns.MainActivity
+import com.example.sns.R
 import com.example.sns.databinding.ActivitySignupBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -125,7 +127,7 @@ class SignUpActivity :AppCompatActivity(){
     private fun addUser(uid:String,Id:String,Email:String){
         val ref=db.collection("User").document(uid)
         db.runTransaction{
-            var user=User(Email,Id,0,uid)
+            var user= User(Email,Id,0,uid)
             it.set(ref,user)
         }.addOnCompleteListener {
         }

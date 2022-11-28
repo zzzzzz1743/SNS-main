@@ -6,20 +6,16 @@
         android:enabled="true"
         android:title="home"/>
     <item
-        android:id="@+id/action_search"
-        android:icon="@drawable/search"
+        android:id="@+id/action_alluser"
+        android:icon="@drawable/group"
         android:enabled="true"
-        android:title="search"/>
+        android:title="all user"/>
     <item
         android:id="@+id/action_newpost"
         android:icon="@drawable/newpost"
         android:enabled="true"
         android:title="new post"/>
-    <item
-        android:id="@+id/action_notification"
-        android:icon="@drawable/bell"
-        android:enabled="true"
-        android:title="notification"/>
+
     <item
         android:id="@+id/action_profile"
         android:icon="@drawable/profile"

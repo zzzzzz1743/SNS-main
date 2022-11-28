@@ -1,4 +1,4 @@
-package com.example.sns
+package com.example.sns.login
 
 data class User(
     var email:String="",

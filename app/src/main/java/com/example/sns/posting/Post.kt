@@ -1,4 +1,4 @@
-package com.example.sns
+package com.example.sns.posting
 
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -10,8 +10,6 @@ data class Post(
     var uid:String?=Firebase.auth.uid,
     var userID:String = "",
     var explain:String = "",
-    var like:Int = 0,
     var imageUrl: String = "",
     var profileimage : String ="",
-    //var likes : MutableMap<String, Boolean> = HashMap()
 )

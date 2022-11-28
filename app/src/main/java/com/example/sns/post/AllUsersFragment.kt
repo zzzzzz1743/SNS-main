@@ -1,4 +1,4 @@
-package com.example.sns
+package com.example.sns.post
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sns.databinding.FragmentHomeBinding
-import com.google.firebase.auth.ktx.auth
+import com.example.sns.posting.Post
+import com.example.sns.databinding.FragmentPostBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.Query
@@ -16,9 +16,9 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
 
-class FriendFragment : Fragment() {
+class AllUsersFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentPostBinding
     private var adapter: PostAdapter? = null
     private var db: FirebaseFirestore = Firebase.firestore
     private var itemsCollectionRef = db.collection("item")
@@ -30,7 +30,7 @@ class FriendFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(layoutInflater,)
+        binding = FragmentPostBinding.inflate(layoutInflater,)
 
         val recyclerview = binding.homefragmentRecyclerview
 
@@ -47,17 +47,12 @@ class FriendFragment : Fragment() {
 
     private fun updateList(){
 
-        val myref=db.collection("User").document(Firebase.auth.uid!!)
-        myref.get().addOnSuccessListener {
-            val user=it.toObject<User>()
-            itemsCollectionRef.orderBy("date",Query.Direction.DESCENDING).get().addOnSuccessListener {it1->
-                for(item in it1) {
-                    val p=item.toObject<Post>()
-                    if((p.uid in user!!.to) || (p.uid==Firebase.auth.uid))
-                        posts.add(p)
-                }
-                adapter?.updateList(posts)
+        itemsCollectionRef.orderBy("date",Query.Direction.DESCENDING).get().addOnSuccessListener {
+            for(item in it) {
+                posts.add(item.toObject<Post>())
             }
+            adapter?.updateList(posts)
+
         }
     }
 }
