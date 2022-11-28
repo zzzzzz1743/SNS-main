@@ -22,25 +22,29 @@ class SignInActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.signup.setOnClickListener {
-            startActivity(
-                Intent(this, SignUpActivity::class.java)
-            )
-//            finish()
+            if(Firebase.auth.currentUser==null) {
+                startActivity(
+                    Intent(this, SignUpActivity::class.java)
+                )
+                finish()
+            }
         }
 
         binding.signin.setOnClickListener {
-            var fine=true
-            val userEmail=binding.email.text.toString()
-            val password=binding.pw.text.toString()
-            if(userEmail.isEmpty()){
-                Toast.makeText(this, "Need Email", Toast.LENGTH_SHORT).show()
-                fine=false
+            if(Firebase.auth.currentUser==null) {
+                var fine = true
+                val userEmail = binding.email.text.toString()
+                val password = binding.pw.text.toString()
+                if (userEmail.isEmpty()) {
+                    Toast.makeText(this, "Need Email", Toast.LENGTH_SHORT).show()
+                    fine = false
+                }
+                if (password.isEmpty() && fine) {
+                    Toast.makeText(this, "Need Password", Toast.LENGTH_SHORT).show()
+                    fine = false
+                }
+                if (fine) doLogin(userEmail, password)
             }
-            if(password.isEmpty()&&fine){
-                Toast.makeText(this, "Need Password", Toast.LENGTH_SHORT).show()
-                fine=false
-            }
-            if(fine)doLogin(userEmail,password)
         }
     }
     private fun doLogin(userEmail: String, password: String) {
