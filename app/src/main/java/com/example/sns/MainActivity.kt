@@ -23,8 +23,9 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                 return true
             }
             R.id.action_search ->{
-                Firebase.auth.signOut()
-                logincheck()
+                var friendFragment = FriendFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.main_content,friendFragment).commit()
+                return true
             }
             R.id.action_newpost ->{
                 logincheck()
@@ -32,7 +33,8 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
             }
             R.id.action_notification ->{
-
+                Firebase.auth.signOut()
+                logincheck()
             }
             R.id.action_profile ->{
                 logincheck()
