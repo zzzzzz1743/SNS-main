@@ -27,8 +27,6 @@ class ProfileActivity : AppCompatActivity() {
         uid=intent.getStringExtra("uid")!!
 
 
-
-
         getProfileImg(uid)
         getUserinfo(uid)
 
@@ -43,7 +41,7 @@ class ProfileActivity : AppCompatActivity() {
         db.collection("item").orderBy("date",Query.Direction.DESCENDING).get().addOnSuccessListener {
             for(doc in it) {
                 val post=doc.toObject<Post>()
-                if(post.Uid==uid)
+                if(post.uid==uid)
                     posts.add(post)
                 println("@@@@@@@qq" + posts)
             }
@@ -57,11 +55,12 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun follow(from:String,to:String){
         //정보 가져오고 수정하고 보내기
+         var touser=User()
         db.runTransaction {
             //상대의 팔로워 목록에 나를 추가
             val ref = db.collection("User").document(to)
 
-            var touser = it.get(ref).toObject<User>()
+            touser = it.get(ref).toObject<User>()!!
 
             if(touser==null){
                 touser= User()
@@ -71,8 +70,9 @@ class ProfileActivity : AppCompatActivity() {
                 touser?.from?.add(from)
 
             it.set(ref,touser!!)
-        }.addOnFailureListener {
-            println("@@@@${it}")
+        }.addOnSuccessListener {
+            binding.from.text=touser.from.size.toString()
+            binding.to.text=touser.to.size.toString()
         }
 
         db.runTransaction{
@@ -90,17 +90,20 @@ class ProfileActivity : AppCompatActivity() {
 
             it.set(ref1,fromuser!!)
         }.addOnCompleteListener {
-            if(it.isSuccessful)binding.followBtn.text="언팔로우"
+            if(it.isSuccessful){
+                binding.followBtn.text="언팔로우"
+            }
         }
     }
 
     private fun unfollow(from: String, to: String){
         //정보 가져오고 수정하고 보내기
+         var touser:User=User()
         db.runTransaction {
             //상대의 팔로워 목록에서 나를 제거
-            val ref = db.collection("Follow").document(to)
+            val ref = db.collection("User").document(to)
 
-            var touser = it.get(ref).toObject<User>()
+            touser = it.get(ref).toObject<User>()!!
 
             if(touser==null){
                 touser= User()
@@ -111,13 +114,17 @@ class ProfileActivity : AppCompatActivity() {
             }
 
             it.set(ref,touser!!)
+        }.addOnSuccessListener {
+            binding.from.text=touser.from.size.toString()
+            binding.to.text=touser.to.size.toString()
         }
 
+        var fromuser:User?=User()
         db.runTransaction{
             //내가 팔로우 하는 사람을 추가
-            val ref1=db.collection("Follow").document(from)
+            val ref1=db.collection("User").document(from)
 
-            var fromuser = it.get(ref1).toObject<User>()
+             fromuser= it.get(ref1).toObject<User>()
 
             if(fromuser==null){
                 fromuser=User()
@@ -129,7 +136,9 @@ class ProfileActivity : AppCompatActivity() {
 
             it.set(ref1,fromuser!!)
         }.addOnCompleteListener {
-            if(it.isSuccessful)binding.followBtn.text="팔로우"
+            if(it.isSuccessful){
+                binding.followBtn.text="팔로우"
+            }
         }
     }
 
@@ -143,18 +152,6 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-
-    //프로필 이미지 외의 정보 받아오기
-    private fun fillUserData(itemID: String) {
-
-    }
-
-    private fun checkFollow() {
-        //상대가 팔로우 되어있는지 확인
-    }
-
-
-
     //프로필 이미지 받아오기
     private fun getProfileImg(Uid: String){
         val n="Profile_picture/${Uid}.png"
@@ -165,18 +162,5 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
     }
-
-    //프로필에 맞는 포스트 출력하기
-    private fun getPosts() {
-        db.collection("item").whereEqualTo("Uid", uid).get().addOnSuccessListener {
-            for(doc in it) {
-                posts.add(doc.toObject())
-            }
-            println("@@@@@" + posts)
-        }
-    }
-
-
-
 
 }

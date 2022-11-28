@@ -7,7 +7,7 @@ import kotlin.collections.HashMap
 
 data class Post(
     var date: Date = Date(),
-    var Uid:String?=Firebase.auth.uid,
+    var uid:String?=Firebase.auth.uid,
     var userID:String = "",
     var explain:String = "",
     var like:Int = 0,

@@ -1,11 +1,13 @@
 package com.example.sns
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
@@ -32,6 +34,9 @@ class PostAdapter (context : Context, private var postlist : List<Post>) : Recyc
         Glide.with(holder.itemView.context).load(postlist[position].imageUrl).into(holder.image_posted)
         holder.like_count.text = "좋아요  ${postlist[position].like}개"
 
+        holder.bind(postlist[position].uid!!)
+
+
         val n="Profile_picture/${postlist[position].profileimage}.png"
         val profileRef=Firebase.storage.reference.child(n)
         profileRef.downloadUrl.addOnCompleteListener {
@@ -54,6 +59,18 @@ class PostAdapter (context : Context, private var postlist : List<Post>) : Recyc
         val explain = itemView.findViewById<TextView>(R.id.home_explain) //내용
         val like_count = itemView.findViewById<TextView>(R.id.home_like_text) //좋아요 수
         val profileimage = itemView.findViewById<ImageView>(R.id.home_profile)
+
+        fun bind(uid:String){
+            profileimage.setOnClickListener {
+                itemView.context.startActivity(Intent(itemView.context,ProfileActivity::class.java).putExtra("uid",uid))
+            }
+            userID.setOnClickListener {
+                itemView.context.startActivity(Intent(itemView.context,ProfileActivity::class.java).putExtra("uid",uid))
+            }
+            explainID.setOnClickListener {
+                itemView.context.startActivity(Intent(itemView.context,ProfileActivity::class.java).putExtra("uid",uid))
+            }
+        }
     }
 
     fun updateList(newList : List<Post>){

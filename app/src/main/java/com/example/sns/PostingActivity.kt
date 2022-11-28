@@ -35,7 +35,6 @@ class PostingActivity: AppCompatActivity() {
         logincheck()
 
 
-
         val getImage=registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
                 imageUri = it.data?.data!!
@@ -68,6 +67,7 @@ class PostingActivity: AppCompatActivity() {
 
 
     private fun uploadpost(){
+        Toast.makeText(this,"업로드 중",Toast.LENGTH_SHORT).show()
         var post=Post(Date(),uid,username,binding.description.text.toString(),0, imageUri.toString(), Firebase.auth.uid.toString())
         val imgref=storage.reference.child("Post/${Date()}")
         db.runTransaction {
@@ -82,14 +82,14 @@ class PostingActivity: AppCompatActivity() {
                     it.storage.downloadUrl.addOnSuccessListener {
                         post.imageUrl = it.toString()
                         db.collection("item").add(post).addOnSuccessListener {
-                            println("success")
+                            Toast.makeText(this,"성공",Toast.LENGTH_SHORT).show()
                             finish()
                         }
                     }
                 }
             } else {
                 db.collection("item").add(post).addOnSuccessListener {
-                    println("success")
+                    Toast.makeText(this,"성공",Toast.LENGTH_SHORT).show()
                     finish()
                 }
             }

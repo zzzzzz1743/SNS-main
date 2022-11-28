@@ -52,5 +52,4 @@ class HomeFragment : Fragment() {
             adapter?.updateList(posts)
         }
     }
-
 }
