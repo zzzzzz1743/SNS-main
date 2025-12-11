@@ -7,12 +7,12 @@ import com.bumptech.glide.Glide
 import com.example.sns.databinding.ActivityProfileBinding
 import com.example.sns.login.User
 import com.example.sns.posting.Post
-import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.auth
 import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
+import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.toObject
+import com.google.firebase.Firebase
+import com.google.firebase.storage.storage
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding:ActivityProfileBinding

@@ -1,7 +1,7 @@
 package com.example.sns.posting
 
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.auth
+import com.google.firebase.Firebase
 import java.util.*
 import kotlin.collections.HashMap
 

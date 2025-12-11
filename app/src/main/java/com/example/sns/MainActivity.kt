@@ -14,9 +14,8 @@ import com.example.sns.login.SignInActivity
 import com.example.sns.posting.PostingActivity
 import com.example.sns.profile.ProfileActivity
 import com.google.android.material.navigation.NavigationBarView
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_main.*
+import com.google.firebase.auth.auth
+import com.google.firebase.Firebase
 
 
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
@@ -70,9 +69,8 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                 .show()
         }
 
-        bottom_navigation.setOnItemSelectedListener(this)
-        //Set default screen
-        bottom_navigation.selectedItemId = R.id.action_home
+        binding.bottomNavigation.setOnItemSelectedListener(this)
+        binding.bottomNavigation.selectedItemId = R.id.action_home
 
     }
 

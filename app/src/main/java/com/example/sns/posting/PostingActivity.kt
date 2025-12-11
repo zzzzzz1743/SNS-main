@@ -11,11 +11,11 @@ import com.bumptech.glide.Glide
 import com.example.sns.databinding.AcivityPostingBinding
 import com.example.sns.login.SignInActivity
 import com.example.sns.login.User
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
+import com.google.firebase.auth.auth
+import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.toObject
+import com.google.firebase.Firebase
+import com.google.firebase.storage.storage
 import java.util.Date
 
 class PostingActivity: AppCompatActivity() {

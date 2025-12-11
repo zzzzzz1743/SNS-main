@@ -13,10 +13,10 @@ import androidx.core.app.ActivityCompat
 import com.example.sns.MainActivity
 import com.example.sns.R
 import com.example.sns.databinding.ActivitySignupBinding
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
+import com.google.firebase.auth.auth
+import com.google.firebase.firestore.firestore
+import com.google.firebase.Firebase
+import com.google.firebase.storage.storage
 
 class SignUpActivity :AppCompatActivity(){
     val db=Firebase.firestore
